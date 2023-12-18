@@ -21,8 +21,8 @@ function App() {
   ];
 
   useEffect(() => {
-    checkWin();
     checkIfTie();
+    checkWin();
 
     if (player === "X") {
       setPlayer("O");
@@ -39,6 +39,9 @@ function App() {
   }, [result]);
 
   const chooseSquare = (square) => {
+    // condition to avoid player change on clicking already filled square for next empty square click 
+    if (board[square] !== "") return
+
     if (!isBoardDisabled) {
       setBoard(
         board.map((val, id) => {
